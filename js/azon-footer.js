@@ -52,6 +52,8 @@ function processSpanLink() {
             }
         }
     });
+    const remEl = document.querySelectorAll('span.Add2Cart');
+    remEl.forEach(el => {el.innerHTML = '';});
     function changeTags(url, tag) {
         let urlObj = new URL(url);
         if (urlObj.searchParams.has('AssociateTag')) {
