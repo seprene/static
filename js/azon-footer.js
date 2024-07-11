@@ -82,7 +82,7 @@ function processSpanLink() {
         linkElement.setAttribute('style', spanElement.getAttribute('style'));
         linkElement.setAttribute('rel', 'noopener noreferrer nofollow');
         linkElement.setAttribute('target', '_blank');
-        linkElement.textContent = spanElement.textContent;
+        linkElement.innerHTML = spanElement.innerHTML;
         return linkElement;
     }
 }
