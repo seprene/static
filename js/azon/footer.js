@@ -28,7 +28,22 @@ function processSpanLink() {
         'dk': { tld: 'dk', tag: '' },
         'no': { tld: 'no', tag: '' }
     };
-    const spanElements = document.querySelectorAll('span[region], span[name="spanlink"]');
+    const navEls = document.querySelectorAll('a[target="_blank"]');
+    navEls.forEach(el => {
+        if (el.getAttribute('target') === '_blank') {
+            const decodedUrl = el.getAttribute('href');
+            const countryCode = getCountry(decodedUrl);
+
+            if (countryCode && regionMappings.hasOwnProperty(countryCode)) {
+                const { tld, tag } = regionMappings[countryCode];
+                const url = changeTags(decodedUrl, tag);
+                el.setAttribute('href', '#'); //url <- temporary
+            } else {
+                //console.warn(`Unsupported country code: ${countryCode}`);
+            }
+        }
+    });
+    const spanElements = document.querySelectorAll('span[region], span[name="spanlink"]"]');
     spanElements.forEach(spanElement => {
         if (spanElement.getAttribute('region')) {
             const regionValue = spanElement.getAttribute('region').toLowerCase();
@@ -83,6 +98,7 @@ function processSpanLink() {
         return null;
     }
     function createLinkElement(url, spanElement) {
+        return spanElement; //temporary
         const linkElement = document.createElement('a');
         linkElement.setAttribute('href', url);
         linkElement.setAttribute('style', spanElement.getAttribute('style') ?? '');
@@ -92,5 +108,5 @@ function processSpanLink() {
         return linkElement;
     }
 }
-//document.addEventListener('DOMContentLoaded', processSpanLink);
+document.addEventListener('DOMContentLoaded', processSpanLink);
 document.addEventListener('livewire:navigated', processSpanLink);
