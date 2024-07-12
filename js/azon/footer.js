@@ -1,3 +1,9 @@
+function removeSpanAdd2Cart() {
+    const remEl = document.querySelectorAll('span.Add2Cart');
+    remEl.forEach(el => {el.innerHTML = '';});
+}
+document.addEventListener('DOMContentLoaded', removeSpanAdd2Cart);
+
 function processSpanLink() {
     const regionMappings = {
         'ca': { tld: 'ca', tag: 'ca-promo-20' },
@@ -22,7 +28,6 @@ function processSpanLink() {
         'dk': { tld: 'dk', tag: '' },
         'no': { tld: 'no', tag: '' }
     };
-    const remEl = document.querySelectorAll('span.Add2Cart'); remEl.forEach(el => {el.innerHTML = '';});
     const spanElements = document.querySelectorAll('span[region], span[name="spanlink"]');
     spanElements.forEach(spanElement => {
         if (spanElement.getAttribute('region')) {
