@@ -81,7 +81,7 @@ function processSpanLink() {
     function createLinkElement(url, spanElement) {
         const linkElement = document.createElement('a');
         linkElement.setAttribute('href', url);
-        linkElement.setAttribute('style', spanElement.getAttribute('style'));
+        linkElement.setAttribute('style', spanElement.getAttribute('style') ?? '');
         linkElement.setAttribute('rel', 'noopener noreferrer nofollow');
         linkElement.setAttribute('target', '_blank');
         linkElement.innerHTML = spanElement.innerHTML;
