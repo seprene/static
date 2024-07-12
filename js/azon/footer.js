@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', removeSpanAdd2Cart);
 
 function processSpanLink() {
     const regionMappings = {
-        'ca': { tld: 'ca', tag: 'ca-promo-20' },
+        'ca': { tld: 'ca', tag: 'ca-blogger-20' },
         'de': { tld: 'de', tag: '' },
         'fr': { tld: 'fr', tag: '' },
         'it': { tld: 'it', tag: '' },
@@ -44,7 +44,8 @@ function processSpanLink() {
                 console.warn(`Unsupported region: ${regionValue}`);
             }
         } else if (spanElement.getAttribute('name') === 'spanlink') {
-            const decodedUrl = decodeURIComponent(spanElement.getAttribute('dataurl'));
+            const dataurl = decodeURIComponent(spanElement.getAttribute('dataurl'));
+            const decodedUrl = dataurl.includes('://') ? dataurl : atob(dataurl);
             const countryCode = getCountry(decodedUrl);
 
             if (countryCode && regionMappings.hasOwnProperty(countryCode)) {
@@ -92,3 +93,4 @@ function processSpanLink() {
     }
 }
 //document.addEventListener('DOMContentLoaded', processSpanLink);
+document.addEventListener('livewire:navigated', processSpanLink);
