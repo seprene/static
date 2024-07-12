@@ -1,12 +1,12 @@
 function processSpanLink() {
     const regionMappings = {
         'ca': { tld: 'ca', tag: 'ca-promo-20' },
-        'de': { tld: 'de', tag: 'de-promo-21' },
-        'fr': { tld: 'fr', tag: 'fr-promo-21' },
-        'it': { tld: 'it', tag: 'it-promo-21' },
-        'es': { tld: 'es', tag: 'es-promo-21' },
-        'us': { tld: 'com', tag: 'us-promo-20' },
-        'gb': { tld: 'co.uk', tag: 'uk-promo-21' },
+        'de': { tld: 'de', tag: '' },
+        'fr': { tld: 'fr', tag: '' },
+        'it': { tld: 'it', tag: '' },
+        'es': { tld: 'es', tag: '' },
+        'us': { tld: 'com', tag: '' },
+        'gb': { tld: 'co.uk', tag: '' },
         'jp': { tld: 'co.jp', tag: '' },
         'mx': { tld: 'com.mx', tag: '' },
         'br': { tld: 'com.br', tag: '' },
@@ -22,7 +22,7 @@ function processSpanLink() {
         'dk': { tld: 'dk', tag: '' },
         'no': { tld: 'no', tag: '' }
     };
-
+    const remEl = document.querySelectorAll('span.Add2Cart'); remEl.forEach(el => {el.innerHTML = '';});
     const spanElements = document.querySelectorAll('span[region], span[name="spanlink"]');
     spanElements.forEach(spanElement => {
         if (spanElement.getAttribute('region')) {
@@ -52,8 +52,6 @@ function processSpanLink() {
             }
         }
     });
-    const remEl = document.querySelectorAll('span.Add2Cart');
-    remEl.forEach(el => {el.innerHTML = '';});
     function changeTags(url, tag) {
         let urlObj = new URL(url);
         if (urlObj.searchParams.has('AssociateTag')) {
@@ -88,4 +86,4 @@ function processSpanLink() {
         return linkElement;
     }
 }
-document.addEventListener('DOMContentLoaded', processSpanLink);
+//document.addEventListener('DOMContentLoaded', processSpanLink);
