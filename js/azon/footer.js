@@ -37,7 +37,8 @@ function processSpanLink() {
             if (countryCode && regionMappings.hasOwnProperty(countryCode)) {
                 const { tld, tag } = regionMappings[countryCode];
                 const url = changeTags(decodedUrl, tag);
-                el.setAttribute('href', '#'); //url <- temporary
+                el.setAttribute('target', '_self'); //_blank <- temporary
+                el.setAttribute('href', '/'); //url <- temporary
             } else {
                 //console.warn(`Unsupported country code: ${countryCode}`);
             }
